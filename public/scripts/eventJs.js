@@ -41,7 +41,8 @@ var eventJs = (function() {
             data: event,
             success: function(response) {                
                 toastr.success("Event başarıyla güncellendi.", "BAŞARILI!");
-                shuldRefreshPage();
+                // shuldRefreshPage();
+                reloadPage();
             },
             error: function() {
                 toastr.error("Event güncellenirken server tarafında hata alındı.", "HATA!");
@@ -56,6 +57,10 @@ var eventJs = (function() {
 
     function onModalOpen() {
         getCurrentValues();
+    }
+
+    function reloadPage(){
+        window.location.reload();
     }
 
     function shuldRefreshPage() {

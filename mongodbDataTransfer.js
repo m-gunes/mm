@@ -1,6 +1,6 @@
 var mongoClient = require("mongodb").MongoClient;
 var moment = require("moment");
-var constring = "";
+var constring = "mongodb://cldusr:jaasd71njk@ds145355.mlab.com:45355/calender";
 
 mongoClient.connect(constring, function(err, db) {
 

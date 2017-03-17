@@ -16,6 +16,7 @@ html
     link(rel="stylesheet", href="css/screen.css")
     link(rel="stylesheet", href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css")
     link(rel="stylesheet", href="lib/flatpickr/dist/flatpickr.min.css")
+    
   body
     nav.navbar.navbar-default
       .container
@@ -28,18 +29,17 @@ html
         ul(role="tablist").nav.nav-pills.nav-justified
           li(role="presentation").active
             a(href="#calendarYatch", aria-controls="profile", role="tab", data-toggle="tab") Takvim
-          if user.authorisation == true
-            li(role="presentation")
-              a(href="#register", aria-controls="register", role="tab", data-toggle="tab") Kayıt
+          li(role="presentation")
+            a(href="#register", aria-controls="register", role="tab", data-toggle="tab") Kayıt
 
         .tab-content
           div(role="tabpanel").tab-pane.active#calendarYatch
             .page-header
               .pull-right.form-inline
                 .btn-group
-                  button(data-calendar-nav="prev").btn.btn-primary <<
+                  button(data-calendar-nav="prev").btn.btn-primary << Geri
                   button(data-calendar-nav="today").btn Bugün
-                  button(data-calendar-nav="next").btn.btn-primary >>
+                  button(data-calendar-nav="next").btn.btn-primary İleri >>
                 .btn-group
                     button(data-calendar-view="year").btn.btn-warning Yıl
                     button(data-calendar-view="month").btn.btn-warning.active Ay
@@ -127,6 +127,7 @@ html
                       div.help-block.with-errors
               .form-group
                 div.col-sm-offset-2.col-sm-10
+                if user.authorisation == true
                   input(type="submit", value="Tamam", name="saveEvent").btn.btn-success.pull-right.event-send
 
           div(tabindex="-1", role="dialog", aria-labelledby="myModalLabel").modal.fade#events-modal
