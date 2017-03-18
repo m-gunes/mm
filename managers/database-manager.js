@@ -31,7 +31,7 @@ process.on('SIGINT', function() {
 
 
 var userSchema = new mongoose.Schema({
-    _id: mongoose.Schema.Types.ObjectId,
+    // _id: mongoose.Schema.Types.ObjectId,
     username: { type: String, lowercase: true, trim: true },
     password: String,
     active: { type: Boolean, default: true },
@@ -73,6 +73,19 @@ var trackerSchema = new mongoose.Schema({
     createdDate: { type: Date, default: Date.now() }
 });
 
+var userPermissionsSchema = new mongoose.Schema({
+    userId: mongoose.Schema.Types.ObjectId,
+    permissionID: mongoose.Schema.Types.ObjectId,
+    byUser: mongoose.Schema.Types.ObjectId,
+    createdDate: { type: Date, default: Date.now() }
+});
+
+var permissionsSchema = new mongoose.Schema({
+    name: String,
+    permissionType: Number,
+    createdDate: { type: Date, default: Date.now() }
+});
+
 function getUserModel() {
     return mongoose.model('users', userSchema);
 }
@@ -89,9 +102,19 @@ function getTrackerModel() {
     return mongoose.model('trackers', trackerSchema);
 }
 
+function getUserPermissionModel(){
+    return mongoose.model('userpermissions',userPermissionsSchema);
+}
+
+function getPermissionModel(){
+    return mongoose.model('permissions', permissionsSchema);
+}
+
 module.exports = {
     getUserModel: getUserModel,
     getEventModel: getEventModel,
     getBoatModel: getBoatModel,
-    getTrackerModel: getTrackerModel
+    getTrackerModel: getTrackerModel,
+    getUserPermissionModel: getUserPermissionModel,
+    getPermissionModel: getPermissionModel
 };
