@@ -19,10 +19,13 @@ html
     
   body
     nav.navbar.navbar-default
-      .container
+      .container.header-container
         .navbar-header(style='width:100%')
-          a(href="#").navbar-brand Eren Yatçılık
+          a(href="/").logo
+            img(src="/img/logo.jpg")
           a(href="/logout" style='margin-top: 7px;').btn.btn-default.pull-right#logout Çıkış
+          a(href="/tekne" style='margin: 7px 7px').btn.btn-info.pull-right Tekneler
+          a(href="/kullanici" style='margin-top: 7px;').btn.btn-info.pull-right Kullanıcılar
 
     .container
       div
