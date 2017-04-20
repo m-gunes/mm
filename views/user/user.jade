@@ -14,7 +14,15 @@ html
 		link(rel="stylesheet", href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css")
 		link(rel="stylesheet", href="/css/screen.css")
 	body
-		.container(style='margin:20px')
+		nav.navbar.navbar-default
+			.container.header-container
+				.navbar-header(style='width:100%')
+				a(href="/").logo
+					img(src="/img/logo.jpg")
+				a(href="/logout" style='margin-top: 7px;').btn.btn-default.pull-right#logout Çıkış
+				a(href="/tekne" style='margin: 7px 7px').btn.btn-info.pull-right Tekneler
+				a(href="/kullanici" style='margin-top: 7px;').btn.btn-info.pull-right Kullanıcılar
+		.container
 
 			.row
 				.col-md-12
@@ -22,44 +30,44 @@ html
 						.panel.panel-primary
 							.panel-heading Kullanıcı Listesi
 							.panel-body.addUserBlock
-								.row.blockElement
-									.col-md-5
+								form.form-inline
+									.form-group									
 										input(type='text', placeholder='Kullanıcı adı').form-control.username
-									.col-md-5
+									.form-group										
 										input(type='password', placeholder='Şifre').form-control.password
-									.col-md-2
-										button(type="submit").btn.btn-success.addUser Ekle
+									
+									button(type="submit").btn.btn-success.addUser Ekle
 			.row
 				.col-md-12
 					if model.resultCode !== 0
 						p #{model.message}
 					else
 						.panel.panel-info
-							.panel-heading Sistemde kayıtlı teknelerin listesi
+							.panel-heading Sistemde kayıtlı Kullanıcıların listesi
 							.panel-body
-								.h2
-									small(style="color:red") 
-								table(style='background-color:white;').table.table-bordered.table-hover
-									thead
-										tr
-											th Id
-											th Kullanıcı Adı
-											th Kayıt Tarihi
-											th #
-											th #
-											th #
-									tbody
-										each user, i in model.data
-											tr(data-id='#{user.userid}')
-												td #{user.userid}
-												td #{user.username}
-												td #{user.createdDate}
-												td
-													input(type="button", class="btn btn-primary", value="Detay", data-toggle="modal", data-target=".modal-user" ,				data-user=JSON.stringify(user)).btn.btn-primarys
-												td
-													input(type="button",value="Sil").btn.btn-danger.deleteUser
-												td
-													input(type="button", value="Yetkiler", data-toggle="modal", data-target=".modal-user-permissions", data-user=JSON.stringify(user)).btn.btn-success
+								
+								.table-responsive
+									table(style='background-color:white;').table.table-bordered.table-hover
+										thead
+											tr
+												//- th Id
+												th Kullanıcı Adı
+												th Kayıt Tarihi
+												th #
+												th #
+												th #
+										tbody
+											each user, i in model.data
+												tr(data-id='#{user.userid}')
+													//- td #{user.userid}
+													td #{user.username}
+													td #{user.createdDate}
+													td
+														input(type="button", class="btn btn-primary", value="Detay", data-toggle="modal", data-target=".modal-user" ,				data-user=JSON.stringify(user)).btn.btn-primarys
+													td
+														input(type="button",value="Sil").btn.btn-danger.deleteUser
+													td
+														input(type="button", value="Yetkiler", data-toggle="modal", data-target=".modal-user-permissions", data-user=JSON.stringify(user)).btn.btn-success
 
 	div(tabindex="-1", role="dialog", aria-labelledby="myModalLabel").modal.fade.modal-user
 		.modal-dialog(role="document")
