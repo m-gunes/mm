@@ -31,10 +31,8 @@ html
 							.panel-heading Yeni tekne giriniz
 							.panel-body
 								form(method="POST",action="/tekne/ekle").form-horizontal
-									.col-sm-11
-										.form-group(style="margin-right: -5px;")										
-											input(type='text', placeholder='Tekne adını giriniz',name="bname").form-control.boatName									
-									
+									.form-group(style="margin-right: -5px;").col-sm-11										
+										input(type='text', placeholder='Tekne adını giriniz',name="bname").form-control.boatName
 									button(type="submit").btn.btn-success.addBoat Ekle
 				.row
 					.col-md-12
