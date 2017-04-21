@@ -19,21 +19,25 @@ html
     
   body
     nav.navbar.navbar-default
-      .container.header-container
+      .container.header-container  
         .navbar-header(style='width:100%')
           a(href="/").logo
             img(src="/img/logo.jpg")
           a(href="/logout" style='margin-top: 7px;').btn.btn-default.pull-right#logout Çıkış
-          a(href="/tekne" style='margin: 7px 7px').btn.btn-info.pull-right Tekneler
-          a(href="/kullanici" style='margin-top: 7px;').btn.btn-info.pull-right Kullanıcılar
+          if model.isadmin
+            a(href="/tekne" style='margin: 7px 7px').btn.btn-info.pull-right Tekneler
+            a(href="/kullanici" style='margin-top: 7px;').btn.btn-info.pull-right Kullanıcılar
+
+        
 
     .container
       div
         ul(role="tablist").nav.nav-pills.nav-justified
           li(role="presentation").active
             a(href="#calendarYatch", aria-controls="profile", role="tab", data-toggle="tab") Takvim
-          li(role="presentation")
-            a(href="#register", aria-controls="register", role="tab", data-toggle="tab") Kayıt
+          if model.isadmin
+            li(role="presentation")
+              a(href="#register", aria-controls="register", role="tab", data-toggle="tab") Kayıt
 
         .tab-content
           div(role="tabpanel").tab-pane.active#calendarYatch
@@ -129,8 +133,7 @@ html
                       |Yemekli
                       div.help-block.with-errors
               .form-group
-                div.col-sm-offset-2.col-sm-10
-                if user.authorisation == true
+                div.col-sm-offset-2.col-sm-10                
                   input(type="submit", value="Tamam", name="saveEvent").btn.btn-success.pull-right.event-send
 
           div(tabindex="-1", role="dialog", aria-labelledby="myModalLabel").modal.fade#events-modal

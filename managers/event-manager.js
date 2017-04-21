@@ -142,6 +142,7 @@ function getEventsByRange(req, res) {
 function getEvents(req, res) {
 
     var viewmodel = new eventViewModel();
+    viewmodel.isadmin = req.authenticated.user.permissions.map(function(item){ return item.name; }).indexOf("admin") > -1;
     var boats = databaseManager.getBoatModel();
     boats.find({}, function(err, boats) {
 
