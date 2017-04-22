@@ -1,0 +1,112 @@
+
+doctype
+html
+	head
+		title #{title}
+		meta(http-equiv='content-type', content='text/html; charset=UTF-8')
+		meta(charset="utf-8")
+		meta(name="generator", content="Bootply")
+		meta(name="viewport", content="width=device-width, initial-scale=1, maximum-scale=1")
+		link(rel='stylesheet', href='/css/bootstrap.min.css')
+		link(rel='stylesheet', href='/css/bootstrap-datepicker3.standalone.min.css')
+		link(rel='stylesheet', href='/lib/bootstrap-calendar/css/calendar.css')
+		link(rel='stylesheet', href='//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css')
+		link(rel="stylesheet", href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css")
+		link(rel="stylesheet", href="/css/screen.css")
+	body
+		nav.navbar.navbar-default
+			.container.header-container
+				.navbar-header(style='width:100%')
+				a(href="/").logo
+					img(src="/img/logo.jpg")
+				a(href="/logout" style='margin-top: 7px;').btn.btn-default.pull-right#logout Çıkış
+				a(href="/tekne" style='margin: 7px 7px').btn.btn-info.pull-right Tekneler
+				a(href="/kullanici" style='margin-top: 7px;').btn.btn-info.pull-right Kullanıcılar
+		.container
+
+			.row
+				.col-md-12
+					if model.resultCode !== -2
+						.panel.panel-primary
+							.panel-heading Kullanıcı Listesi
+							.panel-body.addUserBlock
+								form.form-inline
+									.form-group								
+										input(type='text', placeholder='Kullanıcı adı').form-control.username
+									.form-group									
+										input(type='password', placeholder='Şifre').form-control.password
+									
+									button(type="submit").btn.btn-success.addUser Ekle
+			.row
+				.col-md-12
+					if model.resultCode !== 0
+						p #{model.message}
+					else
+						.panel.panel-info
+							.panel-heading Sistemde kayıtlı Kullanıcıların listesi
+							.panel-body
+								
+								.table-responsive
+									table(style='background-color:white;').table.table-bordered.table-hover
+										thead
+											tr
+												//- th Id
+												th Kullanıcı Adı
+												th Kayıt Tarihi
+												th #
+												th #
+												th #
+										tbody
+											each user, i in model.data
+												tr(data-id='#{user.userid}')
+													//- td #{user.userid}
+													td #{user.username}
+													td #{user.createdDate}
+													td
+														input(type="button", class="btn btn-primary", value="Detay", data-toggle="modal", data-target=".modal-user" ,				data-user=JSON.stringify(user)).btn.btn-primarys
+													td
+														input(type="button",value="Sil").btn.btn-danger.deleteUser
+													td
+														input(type="button", value="Yetkiler", data-toggle="modal", data-target=".modal-user-permissions", data-user=JSON.stringify(user)).btn.btn-success
+
+	div(tabindex="-1", role="dialog", aria-labelledby="myModalLabel").modal.fade.modal-user
+		.modal-dialog(role="document")
+			.modal-header
+				button(type="button", data-dismiss="modal", aria-label="Close").close
+					span(aria-hidden="true") &times;
+				h4().modal-title Kullanıcı Güncelle
+			.modal-body
+				.form-group
+					label Kullanıcı ID
+					input(type="text", disabled="disabled", class="form-control").modal-userid
+				.form-group
+					label Kullanıcı Adı
+					input(type="text").form-control.modal-username
+				.form-group
+					label Yeni Şifre
+					input(type="password", placeholder="Yeni şifre").form-control.modal-password
+				input(type="button",value="Güncelle").btn.btn-success.model-update
+
+	div(tabindex="-1", role="dialog", aria-labelledby="myModalLabel").modal.fade.modal-user-permissions
+		.modal-dialog(role="document")
+			.modal-header
+				button(type="button", data-dismiss="modal", aria-label="Close").close
+					span(aria-hidden="true") &times;
+				h4().modal-title
+					b 
+						span.userpermission-username
+
+			.modal-body
+				.userPermissionBody
+				input(type="button", value="Güncelle").btn.btn-success.update-user-permission
+
+
+
+	script(src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js")
+	script(src="/js/bootstrap.min.js")
+	script(src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js")
+	script(src="/js/jquery.blockUI.min.js")
+	script(src="/scripts/toastrJs.js")
+	script(src="/scripts/userJs.js")
+	script.
+		userJs.init();

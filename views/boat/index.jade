@@ -13,39 +13,48 @@ html
 		link(rel='stylesheet', href='//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css')
 		link(rel="stylesheet", href="/css/screen.css")
 	body
-		.container(style='margin:20px')
-			.row
-				.col-md-12
-					.panel.panel-primary
-						.panel-heading Yeni tekne giriniz
-						.panel-body
-							form(method="POST",action="/tekne/ekle") 
-								.row.blockElement
-									.col-md-11
+		nav.navbar.navbar-default
+			.container.header-container
+				.navbar-header(style='width:100%')
+				a(href="/").logo
+					img(src="/img/logo.jpg")
+				a(href="/logout" style='margin-top: 7px;').btn.btn-default.pull-right#logout Çıkış
+				a(href="/tekne" style='margin: 7px 7px').btn.btn-info.pull-right Tekneler
+				a(href="/kullanici" style='margin-top: 7px;').btn.btn-info.pull-right Kullanıcılar
+		.container
+			if(resultCode == -1)
+				<p>#{message}</p>
+			if(resultCode == 1)
+				.row
+					.col-md-12
+						.panel.panel-primary
+							.panel-heading Yeni tekne giriniz
+							.panel-body
+								form(method="POST",action="/tekne/ekle").form-horizontal
+									.form-group(style="margin-right: -5px;").col-sm-11										
 										input(type='text', placeholder='Tekne adını giriniz',name="bname").form-control.boatName
-									.col-md-1
-										button(type="submit").btn.btn-success.addBoat Ekle
-			.row
-				.col-md-12
-					.panel.panel-info
-						.panel-heading Sistemde kayıtlı teknelerin listesi
-						.panel-body
-							.h2
-								small(style="color:red") #{model.error}
-							table(style='background-color:white;').table.table-bordered.table-hover
-								thead
-									tr
-										th Id
-										th Tekne Adı
-										th Sil
-								tbody
-									each boat in model.boats
-										tr(data-id='#{boat.id}')
-										
-											td #{boat._id}
-											td #{boat.name}
-											td
-												a.btn.btn-danger.deleteBoat(href="/tekne/sil/#{boat._id}") Sil
+									button(type="submit").btn.btn-success.addBoat Ekle
+				.row
+					.col-md-12
+						.panel.panel-info
+							.panel-heading Sistemde kayıtlı teknelerin listesi
+							.panel-body
+								.h2
+									small(style="color:red") #{model.error}
+								table(style='background-color:white;').table.table-bordered.table-hover
+									thead
+										tr
+											//- th Id
+											th Tekne Adı
+											th Sil
+									tbody
+										each boat in model.boats
+											tr(data-id='#{boat.id}')
+
+												//- td #{boat._id}
+												td #{boat.name}
+												td
+													a.btn.btn-danger.deleteBoat(href="/tekne/sil/#{boat._id}") Sil
 		script(src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js")
 		script(src="/js/bootstrap.min.js")
 		//- script(src="lib/jquery/dist/jquery.js")

@@ -8,8 +8,6 @@ html
     meta(name="generator", content="Bootply")
     meta(name="viewport", content="width=device-width, initial-scale=1, maximum-scale=1")
 
-
-    //- link(rel='stylesheet', href='/stylesheets/style.css')
     link(rel='stylesheet', href='/css/bootstrap.min.css')
     link(rel='stylesheet', href='/css/bootstrap-datepicker3.standalone.min.css')
     link(rel='stylesheet', href='/lib/bootstrap-calendar/css/calendar.css')
@@ -17,39 +15,38 @@ html
 
     link(rel="stylesheet", href="css/screen.css")
     link(rel="stylesheet", href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css")
+    link(rel="stylesheet", href="lib/flatpickr/dist/flatpickr.min.css")
+    
   body
-    //- header
-    //-   h1 My Site
-    //- .container
-    //-   .main-content
-    //-     block content
-    //-   .sidebar
-    //-     block sidebar
-    //- footer
-    //-   p Running on node with Express, Jade and Stylus
-
     nav.navbar.navbar-default
-      .container
-        .navbar-header
-          a(href="#").navbar-brand Eren Yatçılık
+      .container.header-container  
+        .navbar-header(style='width:100%')
+          a(href="/").logo
+            img(src="/img/logo.jpg")
+          a(href="/logout" style='margin-top: 7px;').btn.btn-default.pull-right#logout Çıkış
+          if model.isadmin
+            a(href="/tekne" style='margin: 7px 7px').btn.btn-info.pull-right Tekneler
+            a(href="/kullanici" style='margin-top: 7px;').btn.btn-info.pull-right Kullanıcılar
+
+        
 
     .container
       div
         ul(role="tablist").nav.nav-pills.nav-justified
           li(role="presentation").active
             a(href="#calendarYatch", aria-controls="profile", role="tab", data-toggle="tab") Takvim
-
-          li(role="presentation")
-            a(href="#register", aria-controls="register", role="tab", data-toggle="tab") Kayıt
+          if model.isadmin
+            li(role="presentation")
+              a(href="#register", aria-controls="register", role="tab", data-toggle="tab") Kayıt
 
         .tab-content
           div(role="tabpanel").tab-pane.active#calendarYatch
             .page-header
               .pull-right.form-inline
                 .btn-group
-                  button(data-calendar-nav="prev").btn.btn-primary <<
+                  button(data-calendar-nav="prev").btn.btn-primary << Geri
                   button(data-calendar-nav="today").btn Bugün
-                  button(data-calendar-nav="next").btn.btn-primary >>
+                  button(data-calendar-nav="next").btn.btn-primary İleri >>
                 .btn-group
                     button(data-calendar-view="year").btn.btn-warning Yıl
                     button(data-calendar-view="month").btn.btn-warning.active Ay
@@ -58,11 +55,11 @@ html
               h3
             #calendar
           div(role="tabpanel").tab-pane#register
-            form(method="post", action="kaydet", role="form", data-toggle="validator").form-horizontal
+            form(method="post", action="/etkinlik/kaydet", role="form", data-toggle="validator").form-horizontal
               .form-group
                 label.col-sm-2.control-label Tekne
                 .col-sm-10
-                  select(name="bootType", required, data-error="Tekne seçmediniz!").form-control
+                  select(name="bootType", required, data-error=" seçmediniz!").form-control
                     option(value="") Seçiniz
                     each boat in model.boats
                       option(value="#{ boat._id }") #{ boat.name }
@@ -73,15 +70,14 @@ html
                   input(name="eventSubject", required data-error="Etkinliğe ait bir başlık girmediniz!", value="").form-control.title-event
                   div.help-block.with-errors
               .form-group
-                label(for="inputEmail3").col-sm-2.control-label Tarih
+                label(for="inputEmail3").col-sm-2.control-label Başlangıç Tarihi
                 .col-sm-10
-                  input(data-provide="datepicker", name="startDate", required, type="date", data-error="Etkinliğin başlangiç tarihini giriniz!", value="").form-control
+                  input(name="startDate", required, type="text", data-error="Etkinliğin başlangiç tarihini giriniz!", style="background-color: white !important").form-control.flatpickr
                   div.help-block.with-errors
-              .form-group.input-type-2
-                label(for="inputEmail3").col-sm-2.control-label Saat
+              .form-group
+                label(for="inputEmail3").col-sm-2.control-label Bitiş Tarihi
                 .col-sm-10
-                  input(placeholder="başlangıç 00.00", name="startTime", required, type="string", data-error="Etkinliğin başlangıç saatini giriniz!", value="").form-control
-                  input(placeholder="bitiş 00.00", name="endTime", required, type="string", data-error="Etkinliğin bitiş saatini giriniz!", value="").form-control
+                  input(name="endDate", required, data-error="Etkinliğin bitiş tarihini giriniz!", style="background-color: white !important").form-control.flatpickr
                   div.help-block.with-errors
               .form-group
                 label(for="inputEmail3").col-sm-2.control-label Kişi Sayısı
@@ -137,30 +133,16 @@ html
                       |Yemekli
                       div.help-block.with-errors
               .form-group
-                div.col-sm-offset-2.col-sm-10
+                div.col-sm-offset-2.col-sm-10                
                   input(type="submit", value="Tamam", name="saveEvent").btn.btn-success.pull-right.event-send
 
-          div(tabindex="1", role="dialog", aria-labelledby="myModalLabel").modal.fade#events-modal
+          div(tabindex="-1", role="dialog", aria-labelledby="myModalLabel").modal.fade#events-modal
             .modal-dialog(role="document")
               .modal-header
                 button(type="button", data-dismiss="modal", aria-label="Close").close
                   span(aria-hidden="true") &times;
                 h4().modal-title#myModalLabel Modal title
               .modal-body
-              .modal-footer
-                button(type="button", data-dismiss="modal").btn.btn-default Kapat
-                a(type="button").btn.btn-danger.pull-left(href="/sil") Sil
-
-      //- #events-modal.modal.hide.fade
-      //-   .modal-header
-      //-     button(type="button", data-dismiss="modal", aria-hidden="true").close &times;
-      //-     h3 Event
-      //-   .modal-body(style="height: 400px")
-      //-   .modal-footer
-      //-     a(href="#", data-dismiss="modal").btn Close
-
-      //- Container Bitiyor
-
     hr
     hr
     hr
@@ -179,3 +161,19 @@ html
     script(src="lib/bootstrap-calendar/js/app.js")
     script(src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.5/validator.min.js")
     script(src="scripts/toastrJs.js")
+    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js', integrity='sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa', crossorigin='anonymous')
+    script(src="lib/flatpickr/dist/flatpickr.min.js")
+    script(src="lib/flatpickr/dist/l10n/tr.js")
+
+    script(src="scripts/eventJs.js")
+    script.
+      eventJs.init();
+      $(".flatpickr").flatpickr({
+        time_24hr: true,
+        enableTime: true,
+        dateFormat: "Y-m-d H:i",
+        defaultDate: new Date(),
+        minuteIncrement: 30,
+        locale: "tr"
+      });
+    
