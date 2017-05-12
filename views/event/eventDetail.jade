@@ -1,11 +1,11 @@
 
 
 form.eventContainer(data-id="#{model._id}")
-    .input-group
-        button(type="button", data-dismiss="modal").btn.btn-default Kapat
-        if user.isAdmin == true
-            a.btn.btn-danger.pull-left(href="/sil/#{model._id}" style="margin-left:0; width: 60px; margin-right: 10px;")#eventSilBtn Sil
-            button(type="button", data-id="#{model._id}").btn.btn-primary.pull-left#eventUpdate Güncelle
+    //- .input-group
+    //-     button(type="button", data-dismiss="modal").btn.btn-default Kapat
+    //-     if user.isAdmin == true
+    //-         a.btn.btn-danger.pull-left(href="/sil/#{model._id}" style="margin-left:0; width: 60px; margin-right: 10px;")#eventSilBtn Sil
+    //-         button(type="button", data-id="#{model._id}").btn.btn-primary.pull-left#eventUpdate Güncelle
     <br />
     .input-group
         span.input-group-addon Tekne
@@ -64,7 +64,7 @@ form.eventContainer(data-id="#{model._id}")
     .modal-footer(style="padding: 30px 0 10px")
         button(type="button", data-dismiss="modal").btn.btn-default Kapat
         if user.isAdmin == true
-            a.btn.btn-danger.pull-left(href="/sil/#{model._id}" style="margin-left:0; width: 60px; margin-right: 10px;")#eventSilBtn Sil
+            a.btn.btn-danger.pull-left(href="/etkinlik/sil/#{model._id}" style="margin-left:0; width: 60px; margin-right: 10px;")#eventSilBtn Sil
             button(type="button", data-id="#{model._id}").btn.btn-primary.pull-left#eventUpdate Güncelle
 
     script.

@@ -36,7 +36,7 @@ var eventJs = (function() {
         };
 
         $.ajax({
-            url: '/update',
+            url: '/etkinlik/update',
             method: 'post',
             data: event,
             success: function(response) {                
