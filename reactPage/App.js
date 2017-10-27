@@ -60,17 +60,20 @@ class EventDate extends React.Component {
     this.setState({
       startDate: date
     });
+    console.log(this.state.startDate);
+    var newDate = new Date(this.state.startDate).getTime();
+    console.log("date ", newDate);
     //axios.post(`/etkinlik/detay/${startDate}`).then(res => {
-    axios.post("/etkinlik/detay/").then(res => {
+    axios.post(`/etkinlik/looka`,{ date: newDate}).then(res => {
         console.log(res);
     }).catch(error =>{
         console.log(error);
     })
   }
   componentDidMount() {
-      var startDate = this.state.startDate;
+       var newDate = new Date(this.state.startDate).getTime();      
       //axios.post(`/etkinlik/detay/${startDate}`).then(res => {
-      axios.post("/etkinlik/detay/").then(res => {
+      axios.post(`/etkinlik/looka`, {date: newDate}).then(res => {
             console.log(res);
             //this.setState({events: res.data})
         }).catch(error =>{

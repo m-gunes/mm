@@ -31,7 +31,30 @@ router.get('/eventler', getEventsByRange);
 router.get('/detay/:id', getEventDetail);
 router.get('/sil/:id', deleteEvent);
 router.post('/update/', eventUpdate);
+router.post('/looka', getDate);
 router.use('/', getEvents);
+
+//date kısmına "2017-03-01T17:00:00.000+0000" bu şekilde bir tarih gelecek
+
+function getDate(req, res) {
+    var requested = new Date(req.body.date);
+
+    var fromDate = new Date(requested.getFullYear(), requested.getMonth(), requested.getDate());
+    var toDate = new Date(requested.getFullYear(), requested.getMonth(), requested.getDate(), 23,59,59);
+
+    console.log(fromDate);
+    console.log(toDate);
+
+
+    var getEvent = databaseManager.getEventModel();
+    getEvent.find({"startDate": {
+            $gte: fromDate,
+            $lt: toDate
+        }    
+    }, function(err, result){
+        res.send(result);
+    })
+}
 
 function eventUpdate(req, res) {
 
