@@ -31,7 +31,7 @@ router.get('/eventler', getEventsByRange);
 router.get('/detay/:id', getEventDetail);
 router.get('/sil/:id', deleteEvent);
 router.post('/update/', eventUpdate);
-router.post('/looka', getDate);
+router.post('/eventdate', getDate);
 router.use('/', getEvents);
 
 //date kısmına "2017-03-01T17:00:00.000+0000" bu şekilde bir tarih gelecek
@@ -180,9 +180,11 @@ function getEvents(req, res) {
 
 function saveEvent(req, res) {
 
+    var boatArr = req.body.bootType.split(",");
     var eventModel = databaseManager.getEventModel();
     var newEvent = new eventModel();
-    newEvent.boatId = req.body.bootType;
+    newEvent.boatId = boatArr[0];
+    newEvent.boatName = boatArr[1];
     newEvent.subject = req.body.eventSubject;
     newEvent.description = req.body.eventDescription;
     newEvent.startDate = new Date(req.body.startDate);

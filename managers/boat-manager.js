@@ -80,7 +80,7 @@ function addBoat(req, res) {
 
     var boatname = req.body.bname;
     if (!boatname) {
-        viewmodel.error = "tekne ismini boş bırakmayaınız";
+        viewmodel.error = "tekne ismini boş bırakmayınız";
         databaseManager
             .getBoatModel()
             .find()

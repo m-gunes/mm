@@ -45,6 +45,7 @@ var boatSchema = new mongoose.Schema({
 
 var eventSchema = new mongoose.Schema({
     boatId: mongoose.Schema.Types.ObjectId,
+    boatName: String,
     subject: String,
     description: String,
     startDate: Date,

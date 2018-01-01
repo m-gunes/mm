@@ -38,7 +38,7 @@ app.use(urlManager);
 app.use(userManager.authenticate);
 
 
-app.use('/look', express.static(path.join(__dirname, 'src/index.html')));
+app.use('/etkinlikara', express.static(path.join(__dirname, 'src/index.html')));
 app.use('/tekne', boatManagr);
 app.use( '/etkinlik', eventManager);
 app.use('/', userManager.router);

@@ -1,6 +1,6 @@
 html {font-size: 16px !important;}
 body {background-color: #f5f5f5 !important}
-.container {
+.navbar + .container {
     background-color: #fff;
     height: 100vh;
 }
@@ -48,3 +48,55 @@ input {
     line-height: 16px;
     padding: 6px 10px 5px;
 }
+
+@media (max-width: 767px) {
+    .navbar + .container {
+        padding: 0 !important;
+    }
+    .date-header {
+        border-radius: 0;
+        margin-top:0;
+    }
+    .y-panel {
+        margin-left: 0;
+        padding-left: 5px !important;
+        padding-right: 5px !important;
+        h3 {
+            margin-left: 0;
+            padding: 10px;
+            font-size: 20px;
+        }
+    }
+    .event-items {
+        padding-left: 20px;
+    }
+}
+
+
+
+
+///Navigation
+
+.nav {
+    border: 1px solid #337ab7;
+    border-radius: 4px;
+}
+.nav-tabs.nav-justified>li,
+.nav-pills.nav-justified>li {
+    display: table-cell;
+    width: 1%;
+}
+
+.nav-justified>li>a {
+    margin-bottom: 0;
+}
+
+.nav-pills>li>a {
+    border-radius: 0;
+}
+
+.logo{display: inline-block} 
+.logo img{width: 86px; margin-top: 0px; box-shadow: 1px 0px 7px #757575;}
+.container>.navbar-header {margin:0 !important}
+.header-container {padding: 5px !important;}
+
