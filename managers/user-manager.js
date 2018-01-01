@@ -195,7 +195,7 @@ function getUserList(req, res) {
 
         if (!hasPer) {
             response.resultCode = -2;
-            response.message = "Yetkisiz kullanıcı";
+            response.message = "Yetkiniz Bulunmamaktadır!";
             return res.render(userPage, { model: response });
         }
 

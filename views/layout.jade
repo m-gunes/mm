@@ -23,11 +23,11 @@ html
         .navbar-header(style='width:100%')
           a(href="/").logo
             img(src="/img/logo.jpg")
-          a(href="/logout" style='margin-top: 7px;').btn.btn-default.pull-right#logout Çıkış
+          a(href="/logout" style='margin: 7px 0 0 7px;').btn.btn-default.pull-right#logout Çıkış
           if model.isadmin
-            a(href="/tekne" style='margin: 7px 7px').btn.btn-info.pull-right Tekneler
-            a(href="/kullanici" style='margin: 7px 0 0 7px;').btn.btn-info.pull-right Kullanıcılar
-            a(href="/etkinlikara" style='margin-top: 7px;').btn.btn-info.pull-right Etkinlik Ara
+            a(href="/tekne" style='margin: 7px 0 0 7px').btn.btn-info.pull-right Tekne
+            a(href="/kullanici" style='margin: 7px 0 0 7px;').btn.btn-info.pull-right Kullanıcı            
+          a(href="/etkinlikara" style='margin-top: 7px;').btn.btn-info.pull-right Etkinlik
 
         
 
@@ -122,16 +122,29 @@ html
                     option Euro
                   div.help-block.with-errors
               .form-group
-                  label.col-sm-2.ontrol-label Açıklama
+                  label.col-sm-2.control-label Açıklama
                   div.col-sm-10
                     textarea(rows="5", name="eventDescription", required, data-error="Etkinlik açıklamasını giriniz!").form-control 
                     div.help-block.with-errors
               .form-group
+                  label.col-sm-2.control-label Özel Açıklama
+                  div.col-sm-10
+                    textarea(rows="4", name="secretDescription").form-control 
+                    div.help-block.with-errors
+              .form-group
                 div.col-sm-offset-2.col-sm-10
                   .checkbox
-                    label
+                    label(style="margin-right: 15px")
+                      input(type="checkbox", name="hasBreakfast")
+                      |Kahvaltı
+                      div.help-block.with-errors
+                    label(style="margin-right: 15px")
+                      input(type="checkbox", name="hasCocktail")
+                      |Kokteyl
+                      div.help-block.with-errors
+                    label(style="margin-right: 15px")
                       input(type="checkbox", name="hasMeal")
-                      |Yemekli
+                      |Yemek
                       div.help-block.with-errors
               .form-group
                 div.col-sm-offset-2.col-sm-10                

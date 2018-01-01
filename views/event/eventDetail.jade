@@ -57,9 +57,22 @@ form.eventContainer(data-id="#{model._id}")
         span.input-group-addon Açıklama
         textarea(name="description" id="description" rows="2" aria-describedby="description").form-control #{ model.description }
     br
+    if user.isAdmin == true
+     .input-group
+        span.input-group-addon Özel Açıklama
+        textarea(name="privateDescription" id="privateDescription" rows="2" aria-describedby="privateDescription").form-control #{ model.privateDescription }
+    br
     .input-group
-        span.input-group-addon#hasMeail Yemekli mi?
-        input( name="hasDinner" id="hasDinner" type="text", placeholder="Yemekli mi?", aria-describedby="hasMeail", value="#{ model.hasDinner ? 'evet' : 'hayır' }").form-control
+        span.input-group-addon#hasMeail Kahvaltı?
+        input( name="hasBreakfast" id="hasBreakfast" type="text", placeholder="Kahvaltı?", aria-describedby="hasBreakfast", value="#{ model.hasBreakfast ? 'evet' : 'hayır' }").form-control
+    br
+    .input-group
+        span.input-group-addon#hasMeail Kokteyl?
+        input( name="hasCocktail" id="hasCocktail" type="text", placeholder="Kokteyl?", aria-describedby="hasCocktail", value="#{ model.hasCocktail ? 'evet' : 'hayır' }").form-control
+    br
+    .input-group
+        span.input-group-addon#hasMeail Yemekli?
+        input( name="hasDinner" id="hasDinner" type="text", placeholder="Yemekli?", aria-describedby="hasMeail", value="#{ model.hasDinner ? 'evet' : 'hayır' }").form-control
 
     .modal-footer(style="padding: 30px 0 10px")
         button(type="button", data-dismiss="modal").btn.btn-default Kapat

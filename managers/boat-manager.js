@@ -38,7 +38,7 @@ function getBoats(req, res) {
 
     var viewmodel = new boatViewModel();
     if(!hasPermission(req)){
-        return res.render(indexpage, { model: {} , resultCode: -1, message:'Yetkisiz kullanıcı'});
+        return res.render(indexpage, { model: {} , resultCode: -1, message:'Yetkiniz Bulunmamaktadır!'});
     }
 
     databaseManager
@@ -57,7 +57,7 @@ function test() {}
 function deleteBoat(req, res) {
 
     if(!hasPermission(req)){
-        return res.render(indexpage, { model: {} , resultCode: -1, message:'Yetkisiz kullanıcı'});
+        return res.render(indexpage, { model: {} , resultCode: -1, message:'Yetkiniz Bulunmamaktadır!'});
     }
 
     var viewmodel = new boatViewModel();
@@ -73,7 +73,7 @@ function deleteBoat(req, res) {
 function addBoat(req, res) {
 
     if(!hasPermission(req)){
-        return res.render(indexpage, { model: {} , resultCode: -1, message:'Yetkisiz kullanıcı'});
+        return res.render(indexpage, { model: {} , resultCode: -1, message:'Yetkiniz Bulunmamaktadır!'});
     }
 
     var viewmodel = new boatViewModel();

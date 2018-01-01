@@ -34,17 +34,12 @@ router.post('/update/', eventUpdate);
 router.post('/eventdate', getDate);
 router.use('/', getEvents);
 
-//date kısmına "2017-03-01T17:00:00.000+0000" bu şekilde bir tarih gelecek
 
 function getDate(req, res) {
     var requested = new Date(req.body.date);
 
     var fromDate = new Date(requested.getFullYear(), requested.getMonth(), requested.getDate());
     var toDate = new Date(requested.getFullYear(), requested.getMonth(), requested.getDate(), 23,59,59);
-
-    console.log(fromDate);
-    console.log(toDate);
-
 
     var getEvent = databaseManager.getEventModel();
     getEvent.find({"startDate": {
@@ -64,6 +59,7 @@ function eventUpdate(req, res) {
         etkinlik.boatId = req.body.boatId;
         etkinlik.subject = req.body.subject;
         etkinlik.description = req.body.description;
+        etkinlik.privateDescription = req.body.secretDescription;
         etkinlik.startDate = req.body.startDate;
         etkinlik.endDate = req.body.endDate;
         etkinlik.personCount = req.body.personCount;
@@ -76,6 +72,8 @@ function eventUpdate(req, res) {
         etkinlik.moneyType2 = req.body.moneyType2;
         etkinlik.moneyType3 = req.body.moneyType3;
         etkinlik.hasDinner = req.body.hasDinner === 'evet';
+        etkinlik.hasBreakfast = req.body.hasBreakfast === 'evet';
+        etkinlik.hasCocktail = req.body.hasCocktail === 'evet';
 
         etkinlik.save(function(err, updatedEtkinlik) {
 
@@ -147,7 +145,8 @@ function getEventsByRange(req, res) {
                 var timezoneOffset = -1 * new Date().getTimezoneOffset();
                 calenderEvents.result.push({
                     id: evnt._id.toString(),
-                    title: evnt.subject,
+                    //title: evnt.subject,
+                    title: evnt.boatName || evnt.subject,                    
                     url: '/etkinlik/detay/' + evnt._id,
                     class: "event-important",
                     // start: new Date(evnt.startDate.getTime() + evnt.startTime * 60 * 60 * 1000).getTime() - 180 * 60 * 1000,
@@ -187,6 +186,7 @@ function saveEvent(req, res) {
     newEvent.boatName = boatArr[1];
     newEvent.subject = req.body.eventSubject;
     newEvent.description = req.body.eventDescription;
+    newEvent.privateDescription = req.body.secretDescription;    
     newEvent.startDate = new Date(req.body.startDate);
     newEvent.endDate = new Date(req.body.endDate);
     newEvent.personCount = req.body.guestCount;
@@ -199,6 +199,8 @@ function saveEvent(req, res) {
     newEvent.moneyType2 = req.body.moneyType2;
     newEvent.moneyType3 = req.body.moneyType3;
     newEvent.hasDinner = req.body.hasMeal === 'on';
+    newEvent.hasBreakfast = req.body.hasBreakfast === 'on';
+    newEvent.hasCocktail = req.body.hasCocktail === 'on';
     newEvent.save(function(err, evnt) {
         res.redirect("/etkinlik");
     });
