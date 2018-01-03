@@ -10,6 +10,7 @@ var eventJs = (function() {
         $('body').on("click", "#eventUpdate", updateEvent);
     }
 
+
     function updateEvent() {
         var eventId = $(this).data("id");
         var event = {};
@@ -17,6 +18,7 @@ var eventJs = (function() {
         event.boatId = $("#selectedBoat").val();
         event.subject = $("#subject").val();
         event.description = $("#description").val();
+        event.privateDescription = $("#privateDescription").val();
         event.startDate = $("#startDate").val();
         event.endDate = $("#endDate").val();
         event.personCount = $("#personCount").val();
@@ -24,11 +26,16 @@ var eventJs = (function() {
         event.endLocation = $("#startLocation").val().split("-")[1].replace(/\s/g, '');
         event.fee = $("#fee").val();
         event.sell = $("#sell").val();
+        event.mealCharge = $("#mealCharge").val();
         event.earnestMoney = $("#earnestMoney").val();
         event.moneyType1 = $("#moneyType1").val();
         event.moneyType2 = $("#moneyType2").val();
         event.moneyType3 = $("#moneyType3").val();
+        event.moneyType4 = $("#moneyType4").val();
         event.hasDinner = $("#hasDinner").val();
+        event.hasConfirm = $("#hasConfirm").val();
+        event.hasCocktail = $("#hasCocktail").val();
+        event.hasBreakfast = $("#hasBreakfast").val();
 
         toastr.options = {
             "positionClass": "toast-top-center",

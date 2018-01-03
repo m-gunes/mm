@@ -64,7 +64,8 @@ var eventSchema = new mongoose.Schema({
     mealCharge: Number,
     moneyType1: String,
     moneyType2: String,
-    moneyType3: String
+    moneyType3: String,
+    moneyType4: String
 });
 
 var trackerSchema = new mongoose.Schema({

@@ -98,7 +98,7 @@ class EventDate extends React.Component {
                             </div>                                
                         )                        
                     })
-                ): <h3 className="text-center" style={{display:"inline-block",width:"100%"}}>etkinlik bulunamadı</h3>
+                ): <h3 className="text-center" style={{display:"inline-block",width:"100%"}}>Etkinlik bulunamadı</h3>
             }
         </div>
     )    
