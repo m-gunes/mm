@@ -17,6 +17,29 @@ function IsDublicate (data, name) {
     return (arr2);
 }
 
+function ItemList(props) {
+    let data = props.post;
+    let id = props.id;
+    return (
+            <ol className="event-items">                                                  
+                {
+                    data.sort((a, b) => new Date(a.startDate) - new Date(b.startDate))
+                        .map(v => {
+                            if(v.boatId === id) {
+                                return (
+                                    <li className={v.hasConfirm ? "confirm" : ""}>
+                                        <strong>{moment(v.startDate).format('LT')} - {moment(v.endDate).format('LT')} </strong>
+                                        <span>{v.startLocation} - {v.endLocation}</span>
+                                    </li>
+                                )                                                            
+                            }
+                        })
+                }
+            </ol>        
+    )
+}
+
+
 class EventDate extends React.Component {
   constructor (props) {
     super(props)
@@ -52,7 +75,7 @@ class EventDate extends React.Component {
   }
 
   render() {
-    let eventsData = this.state.events;    
+    let eventsData = this.state.events;
     let boatIds = eventsData.length > 0 ? IsDublicate(eventsData, "boatId") : null;
     let boatNames = eventsData.length > 0 ? IsDublicate(eventsData, "boatName"):null;
 
@@ -71,20 +94,7 @@ class EventDate extends React.Component {
                         return (                                
                             <div className="col-sm-6 y-panel">
                                 <h3>{boatNames[i]}</h3>
-                                <ol className="event-items">
-                                    {
-                                        eventsData.map(v => {
-                                            if(v.boatId === e) {
-                                                return (
-                                                    <li>
-                                                        <strong>{moment(v.startDate).format('LT')} - {moment(v.endDate).format('LT')} </strong>
-                                                        <span>{v.startLocation} - {v.endLocation}</span>
-                                                    </li>
-                                                )                                                            
-                                            }
-                                        })
-                                    }
-                                </ol>
+                                <ItemList post={eventsData}  id={e}/>
                             </div>                                
                         )                        
                     })

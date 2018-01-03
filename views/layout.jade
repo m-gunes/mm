@@ -90,17 +90,7 @@ html
                 .col-sm-10
                   input(name="startLocation", required, data-error="Başlangıç yerini giriniz!", value="").form-control
                   input(name="endLocation", required, data-error="Bitiş yerini giriniz!", value="").form-control
-                  div.help-block.with-errors
-              .form-group.money-type
-                label(for="inputEmail3").col-sm-2.control-label Ödeme
-                .col-sm-10
-                  input( name="payment", required, type="number", data-error="Ödeme miktarını giriniz!", value="").form-control
-                  //label TL
-                  select(name="moneyType1", required).form-control
-                    option TL
-                    option Dolar
-                    option Euro
-                  div.help-block.with-errors
+                  div.help-block.with-errors              
               .form-group.money-type
                 label(for="inputEmail3").col-sm-2.control-label Satış
                 .col-sm-10
@@ -112,11 +102,30 @@ html
                     option Euro
                   div.help-block.with-errors
               .form-group.money-type
+                label(for="inputEmail3").col-sm-2.control-label Yemek Ücreti
+                .col-sm-10
+                  input( name="eventMealCharge", required, type="number", data-error="Yemek ücretini giriniz!", value="").form-control
+                  select(name="moneyType4", required).form-control
+                    option TL
+                    option Dolar
+                    option Euro
+                  div.help-block.with-errors              
+              .form-group.money-type
                 label(for="inputEmail3").col-sm-2.control-label kapora
                 .col-sm-10
                   input( name="earnestMoney", required, type="number", data-error="Kapora miktarını giriniz!", value="").form-control
                   //label TL
                   select(name="moneyType3", required).form-control
+                    option TL
+                    option Dolar
+                    option Euro
+                  div.help-block.with-errors
+              .form-group.money-type
+                label(for="inputEmail3").col-sm-2.control-label Ödeme
+                .col-sm-10
+                  input( name="payment", required, type="number", data-error="Ödeme miktarını giriniz!", value="").form-control
+                  //label TL
+                  select(name="moneyType1", required).form-control
                     option TL
                     option Dolar
                     option Euro
@@ -145,6 +154,10 @@ html
                     label(style="margin-right: 15px")
                       input(type="checkbox", name="hasMeal")
                       |Yemek
+                      div.help-block.with-errors
+                    label
+                      input(type="checkbox", name="hasConfirm")
+                      |Confirm
                       div.help-block.with-errors
               .form-group
                 div.col-sm-offset-2.col-sm-10                

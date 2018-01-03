@@ -2,6 +2,7 @@ var webpack = require('webpack');
 var path = require('path');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 const extractSASS = new ExtractTextPlugin('css/[name].css');
+const CompressionPlugin = require("compression-webpack-plugin");
 
 module.exports = {
     entry: {
@@ -51,6 +52,9 @@ module.exports = {
         ]
     },
     plugins: [
-        extractSASS
+        extractSASS,
+        new CompressionPlugin({
+            algorithm: 'gzip'
+          })
     ]
 }

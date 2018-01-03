@@ -18,7 +18,7 @@ body {background-color: #f5f5f5 !important}
     h3 {
         padding-left: 40px;
         color: #ffffff;
-        padding: 20px 20px;
+        padding: 15px 20px;
         margin-left: 30px;
         border-radius: 5px;
         margin-bottom: 20px;
@@ -30,14 +30,16 @@ body {background-color: #f5f5f5 !important}
     li {
         height: 40px;
         line-height: 40px;
-        border: 1px solid #e0e0e0;
-        margin-bottom: 5px;
+        border-left: 3px solid #a70e0e;
+        margin-bottom: 10px;
         padding-left: 15px;
         border-radius: 3px;
+        box-shadow: 1px 1px 1px #676767 ;
         strong {
             margin-right: 10px;
         }
     }
+    .confirm {border-left: 3px solid green}
 }
 
 input {

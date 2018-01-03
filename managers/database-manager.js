@@ -58,8 +58,10 @@ var eventSchema = new mongoose.Schema({
     hasDinner: Boolean,
     hasBreakfast: Boolean,
     hasCocktail: Boolean,
+    hasConfirm: Boolean,
     sell: Number,
     earnestMoney: Number,
+    mealCharge: Number,
     moneyType1: String,
     moneyType2: String,
     moneyType3: String

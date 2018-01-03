@@ -68,12 +68,14 @@ function eventUpdate(req, res) {
         etkinlik.fee = req.body.fee;
         etkinlik.sell = req.body.sell;
         etkinlik.earnestMoney = req.body.earnestMoney;
+        etkinlik.mealCharge = req.body.eventMealCharge;    
         etkinlik.moneyType1 = req.body.moneyType1;
         etkinlik.moneyType2 = req.body.moneyType2;
         etkinlik.moneyType3 = req.body.moneyType3;
         etkinlik.hasDinner = req.body.hasDinner === 'evet';
         etkinlik.hasBreakfast = req.body.hasBreakfast === 'evet';
         etkinlik.hasCocktail = req.body.hasCocktail === 'evet';
+        etkinlik.hasConfirm = req.body.hasConfirm === 'evet';
 
         etkinlik.save(function(err, updatedEtkinlik) {
 
@@ -195,10 +197,12 @@ function saveEvent(req, res) {
     newEvent.fee = req.body.payment;
     newEvent.sell = req.body.sale;
     newEvent.earnestMoney = req.body.earnestMoney;
+    newEvent.mealCharge = req.body.eventMealCharge;
     newEvent.moneyType1 = req.body.moneyType1;
     newEvent.moneyType2 = req.body.moneyType2;
     newEvent.moneyType3 = req.body.moneyType3;
     newEvent.hasDinner = req.body.hasMeal === 'on';
+    newEvent.hasConfirm = req.body.hasConfirm === 'on';
     newEvent.hasBreakfast = req.body.hasBreakfast === 'on';
     newEvent.hasCocktail = req.body.hasCocktail === 'on';
     newEvent.save(function(err, evnt) {

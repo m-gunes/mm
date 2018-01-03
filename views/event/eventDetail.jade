@@ -35,12 +35,7 @@ form.eventContainer(data-id="#{model._id}")
     .input-group
         span.input-group-addon#startEndLocation Başlangıç - Bitiş Noktası
         input( name="startLocation" id="startLocation" type="text", placeholder="Başlangıç - Bitiş Noktası", aria-describedby="startEndLocation", value="#{ model.startLocation } - #{ model.endLocation }").form-control
-    br
-    .input-group.money-type
-        span.input-group-addon#payment Ödeme
-        input( name="fee" id="fee" type="text", placeholder="Ödeme", aria-describedby="payment", value="#{ model.fee }").form-control
-        input( name="moneyType1" id="moneyType1" type="text", placeholder="", aria-describedby="moneyType1", value="#{ model.moneyType1 }").form-control    
-    br
+    br    
     if user.isAdmin == true
      .input-group.money-type
          span.input-group-addon Satış
@@ -49,10 +44,21 @@ form.eventContainer(data-id="#{model._id}")
      br
     if user.isAdmin == true
      .input-group.money-type
+         span.input-group-addon Yemek ücreti
+         input( name="mealCharge" id="mealCharge" type="text", placeholder="Yemek ücreti", aria-describedby="mealCharge", value="#{ model.mealCharge }").form-control
+         input( name="moneyType4" id="moneyType4" type="text", placeholder="", aria-describedby="moneyType4", value="#{ model.moneyType4 }").form-control        
+     br
+    if user.isAdmin == true
+     .input-group.money-type
          span.input-group-addon Kapora
          input( name="earnestMoney" id="earnestMoney" type="text", placeholder="Kapora", aria-describedby="earnestMoney", value="#{ model.earnestMoney }").form-control
          input( name="moneyType3" id="moneyType3" type="text", placeholder="", aria-describedby="moneyType3", value="#{ model.moneyType3 }").form-control        
      br
+    .input-group.money-type
+        span.input-group-addon#payment Ödeme
+        input( name="fee" id="fee" type="text", placeholder="Ödeme", aria-describedby="payment", value="#{ model.fee }").form-control
+        input( name="moneyType1" id="moneyType1" type="text", placeholder="", aria-describedby="moneyType1", value="#{ model.moneyType1 }").form-control    
+     br    
     .input-group
         span.input-group-addon Açıklama
         textarea(name="description" id="description" rows="2" aria-describedby="description").form-control #{ model.description }
@@ -71,8 +77,13 @@ form.eventContainer(data-id="#{model._id}")
         input( name="hasCocktail" id="hasCocktail" type="text", placeholder="Kokteyl?", aria-describedby="hasCocktail", value="#{ model.hasCocktail ? 'evet' : 'hayır' }").form-control
     br
     .input-group
-        span.input-group-addon#hasMeail Yemekli?
+        span.input-group-addon#hasMeail Yemek?
         input( name="hasDinner" id="hasDinner" type="text", placeholder="Yemekli?", aria-describedby="hasMeail", value="#{ model.hasDinner ? 'evet' : 'hayır' }").form-control
+    br
+    .input-group
+        span.input-group-addon#hasMeail Confirm?
+        input( name="hasConfirm" id="hasConfirm" type="text", placeholder="confirm?", aria-describedby="hasConfirm", value="#{ model.hasConfirm ? 'evet' : 'hayır' }").form-control
+
 
     .modal-footer(style="padding: 30px 0 10px")
         button(type="button", data-dismiss="modal").btn.btn-default Kapat
