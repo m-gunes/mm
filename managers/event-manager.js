@@ -59,24 +59,24 @@ function eventUpdate(req, res) {
         etkinlik.boatId = req.body.boatId;
         etkinlik.subject = req.body.subject;
         etkinlik.description = req.body.description;
-        etkinlik.privateDescription = req.body.secretDescription;
-        etkinlik.startDate = req.body.startDate;
-        etkinlik.endDate = req.body.endDate;
+        etkinlik.privateDescription = req.body.privateDescription;
+        etkinlik.startDate = new Date(req.body.startDate);
+        etkinlik.endDate = new Date(req.body.endDate);
         etkinlik.personCount = req.body.personCount;
         etkinlik.startLocation = req.body.startLocation;
         etkinlik.endLocation = req.body.endLocation;
         etkinlik.fee = req.body.fee;
         etkinlik.sell = req.body.sell;
+        etkinlik.mealCharge = req.body.mealCharge;  
         etkinlik.earnestMoney = req.body.earnestMoney;
-        etkinlik.mealCharge = req.body.eventMealCharge;    
         etkinlik.moneyType1 = req.body.moneyType1;
         etkinlik.moneyType2 = req.body.moneyType2;
         etkinlik.moneyType3 = req.body.moneyType3;
         etkinlik.moneyType4 = req.body.moneyType4;
-        etkinlik.hasDinner = req.body.hasDinner === 'evet';
-        etkinlik.hasBreakfast = req.body.hasBreakfast === 'evet';
-        etkinlik.hasCocktail = req.body.hasCocktail === 'evet';
-        etkinlik.hasConfirm = req.body.hasConfirm === 'evet';
+        etkinlik.hasDinner = req.body.hasDinner.toUpperCase() === 'EVET';
+        etkinlik.hasBreakfast = req.body.hasBreakfast.toUpperCase() === 'EVET';
+        etkinlik.hasCocktail = req.body.hasCocktail.toUpperCase() === 'EVET';
+        etkinlik.hasConfirm = req.body.hasConfirm.toUpperCase() === 'EVET';
 
         etkinlik.save(function(err, updatedEtkinlik) {
 
@@ -151,7 +151,7 @@ function getEventsByRange(req, res) {
                     //title: evnt.subject,
                     title: evnt.boatName || evnt.subject,                    
                     url: '/etkinlik/detay/' + evnt._id,
-                    class: "event-important",
+                    class: evnt.hasConfirm ? "event-success" : "event-important",
                     // start: new Date(evnt.startDate.getTime() + evnt.startTime * 60 * 60 * 1000).getTime() - 180 * 60 * 1000,
                     // end: new Date(evnt.startDate.getTime() + evnt.endTime * 60 * 60 * 1000).getTime() - 180 * 60 * 1000
                     start: evnt.startDate.getTime(),
@@ -197,8 +197,8 @@ function saveEvent(req, res) {
     newEvent.endLocation = req.body.endLocation;
     newEvent.fee = req.body.payment;
     newEvent.sell = req.body.sale;
-    newEvent.earnestMoney = req.body.earnestMoney;
     newEvent.mealCharge = req.body.eventMealCharge;
+    newEvent.earnestMoney = req.body.earnestMoney;
     newEvent.moneyType1 = req.body.moneyType1;
     newEvent.moneyType2 = req.body.moneyType2;
     newEvent.moneyType3 = req.body.moneyType3;

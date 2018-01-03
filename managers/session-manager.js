@@ -6,7 +6,7 @@ var sessionManger = (function() {
     function init(req, res, next) {
 
         sessions({
-            duration: 1 * 60 * 1000, // how long the session will stay valid in ms
+            duration: 1 * 60 * 2000, // how long the session will stay valid in ms
             cookieName: appsettings.cookies.name, // cookie name dictates the key name added to the request object
             secret: appsettings.cookies.secret, // should be a large unguessable string
             // duration: 1 * 60 * 1000, // how long the session will stay valid in ms
