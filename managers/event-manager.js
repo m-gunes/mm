@@ -57,6 +57,7 @@ function eventUpdate(req, res) {
     eventModel.findById(req.body.id, function(err, etkinlik) {
 
         etkinlik.boatId = req.body.boatId;
+        etkinlik.boatName = req.body.boatName;    
         etkinlik.subject = req.body.subject;
         etkinlik.description = req.body.description;
         etkinlik.privateDescription = req.body.privateDescription;

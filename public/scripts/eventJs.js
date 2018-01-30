@@ -16,6 +16,7 @@ var eventJs = (function() {
         var event = {};
         event.id = $(this).data("id");
         event.boatId = $("#selectedBoat").val();
+        event.boatName =  $("#selectedBoat option:selected").text();
         event.subject = $("#subject").val();
         event.description = $("#description").val();
         event.privateDescription = $("#privateDescription").val();
